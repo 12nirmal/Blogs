@@ -788,24 +788,35 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiAddAdd extends Schema.CollectionType {
-  collectionName: 'adds';
+export interface ApiAbouteMeAbouteMe extends Schema.CollectionType {
+  collectionName: 'aboute_mes';
   info: {
-    singularName: 'add';
-    pluralName: 'adds';
-    displayName: 'add';
+    singularName: 'aboute-me';
+    pluralName: 'aboute-mes';
+    displayName: 'AbouteMe';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
     image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::add.add', 'oneToOne', 'admin::user'> &
+    createdBy: Attribute.Relation<
+      'api::aboute-me.aboute-me',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
-    updatedBy: Attribute.Relation<'api::add.add', 'oneToOne', 'admin::user'> &
+    updatedBy: Attribute.Relation<
+      'api::aboute-me.aboute-me',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -885,6 +896,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     singularName: 'blog';
     pluralName: 'blogs';
     displayName: 'blog';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -902,6 +914,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     image: Attribute.Media;
     author: Attribute.String;
     date: Attribute.Date;
+    avatar: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -992,7 +1005,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::add.add': ApiAddAdd;
+      'api::aboute-me.aboute-me': ApiAbouteMeAbouteMe;
       'api::article.article': ApiArticleArticle;
       'api::banner.banner': ApiBannerBanner;
       'api::blog.blog': ApiBlogBlog;

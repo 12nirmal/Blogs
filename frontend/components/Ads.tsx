@@ -1,7 +1,7 @@
-// import React from "react";
+import React from "react";
 
-// const Ads = () => {
-//   return <div>hellow</div>;
-// };
+const Ads = () => {
+  return <div>Adds</div>;
+};
 
-// export default Ads;
+export default Ads;

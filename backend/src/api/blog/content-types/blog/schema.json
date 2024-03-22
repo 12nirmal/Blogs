@@ -4,7 +4,8 @@
   "info": {
     "singularName": "blog",
     "pluralName": "blogs",
-    "displayName": "blog"
+    "displayName": "blog",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -25,6 +26,23 @@
       "customField": "plugin::ckeditor5.CKEditor"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "author": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "avatar": {
       "allowedTypes": [
         "images",
         "files",
@@ -33,12 +51,6 @@
       ],
       "type": "media",
       "multiple": false
-    },
-    "author": {
-      "type": "string"
-    },
-    "date": {
-      "type": "date"
     }
   }
 }

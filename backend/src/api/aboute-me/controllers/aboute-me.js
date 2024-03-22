@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * add controller
+ * aboute-me controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories;
 
-module.exports = createCoreController('api::add.add');
+module.exports = createCoreController('api::aboute-me.aboute-me');
