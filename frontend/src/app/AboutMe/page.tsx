@@ -1,4 +1,5 @@
 "use client";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -7,47 +8,50 @@ const AboutMe = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await axios.get(
-        `http://localhost:1337/api/aboute-mes?populate=*`
-      );
-      let response = data.data.data;
-      console.log(response);
-      setData(response);
+      try {
+        const response = await axios.get(
+          `http://localhost:1337/api/aboute-mes?populate=*`
+        );
+        setData(response.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     fetchData();
   }, []);
 
-  console.log(data);
-
   return (
-    <>
-      <div className="relative bg-white overflow-hidden mt-16">
-        <div className="max-w-7xl mx-auto">
-          <div className=" z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <div className="pt-1"></div>
-            {data?.map((item: any, index: number) => (
-              <>
-                <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-                  <div className="sm:text-center lg:text-left">
-                    <h2 className="my-6 text-2xl tracking-tight font-extrabold text-gray-900 sm:text-3xl md:text-4xl">
-                      {item.attributes.title}
-                    </h2>
-                    {item.attributes.description}
-                  </div>
-                </main>
-                <div className="lg:absolute lg:inset-y-0  right-10 lg:w-1/5 ">
-                  <img
-                    className="object-cover sm:h-72 md:h-96 lg:w-full lg:h-full rounded-none lg:rounded-lg shadow-2xl relative right-48"
-                    src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
-                    alt=""
-                  />
-                </div>
-              </>
-            ))}
-          </div>
+    <div
+      className="bg-cover bg-center bg-no-repeat bg-fixed"
+      style={{
+        backgroundImage: `url('https://source.unsplash.com/1L71sPT5XKc')`,
+      }}
+    >
+      <div className="bg-white bg-opacity-75">
+        <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+          {data.map((item: any, index) => (
+            <div
+              key={index}
+              className="my-10 sm:flex sm:items-center sm:justify-between"
+            >
+              <div className="sm:w-2/3 sm:mr-10">
+                <h2 className="text-2xl font-extrabold text-yellow-300 mb-4">
+                  {item.attributes.title}
+                </h2>
+                <p className="text-lg">{item.attributes.description}</p>
+              </div>
+              <div className="sm:w-1/3 sm:mt-0 mt-6">
+                <img
+                  className="w-full h-auto rounded-lg shadow-2xl"
+                  src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
+                  alt=""
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

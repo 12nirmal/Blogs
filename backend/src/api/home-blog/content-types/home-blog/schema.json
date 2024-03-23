@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "home_blogs",
+  "info": {
+    "singularName": "home-blog",
+    "pluralName": "home-blogs",
+    "displayName": "HomeBlog",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "heading": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "blocks"
+    },
+    "category": {
+      "type": "string"
+    },
+    "categoryDesc": {
+      "type": "blocks"
+    }
+  }
+}

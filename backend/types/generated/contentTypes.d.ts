@@ -961,6 +961,42 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiHomeBlogHomeBlog extends Schema.CollectionType {
+  collectionName: 'home_blogs';
+  info: {
+    singularName: 'home-blog';
+    pluralName: 'home-blogs';
+    displayName: 'HomeBlog';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    image: Attribute.Media;
+    heading: Attribute.String;
+    name: Attribute.String;
+    description: Attribute.Blocks;
+    category: Attribute.String;
+    categoryDesc: Attribute.Blocks;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::home-blog.home-blog',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::home-blog.home-blog',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMenuMenu extends Schema.SingleType {
   collectionName: 'menus';
   info: {
@@ -1010,6 +1046,7 @@ declare module '@strapi/types' {
       'api::banner.banner': ApiBannerBanner;
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
+      'api::home-blog.home-blog': ApiHomeBlogHomeBlog;
       'api::menu.menu': ApiMenuMenu;
     }
   }
