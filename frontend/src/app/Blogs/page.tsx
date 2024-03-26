@@ -1,11 +1,10 @@
 "use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./blog.css";
 
 const Blogs = () => {
   const [data, setData] = useState([]);
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(4);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,48 +21,46 @@ const Blogs = () => {
   };
 
   return (
-    <div className="container mx-auto xl:mx-w-[1180px] pt-[40px] text-black pb-[40px]">
-      <h1>Latest Post</h1>
-      <div className="mt-[20px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
+      <h1 className="text-3xl font-bold mb-8 text-center">Latest Posts</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {data.map((item: any, index) => (
-          <div key={index} className="cursor-pointer border-3d rounded">
-            <div className="h-[240px] w-full overflow-hidden">
-              <img
-                src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
-                alt=""
-                className="w-full h-[100%] object-cover hover:scale-[109%] transition-all duration-300 ease-in-out"
-              />
-            </div>
-            <div className="pt-[15px] pl-[8px] pb-[5px]">
-              <h2 className="bg-rose-900 inline-block text-white rounded-lg py-[4px] px-[8px] mb-[15px]">
+          <div
+            key={index}
+            className="border rounded shadow overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105"
+          >
+            <img
+              src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
+              alt=""
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              <span className="inline-block bg-red-600 text-white text-xs font-semibold rounded-full px-2 py-1 mb-2">
                 {item.attributes.category}
+              </span>
+              <h2 className="text-lg font-semibold mb-2">
+                {item.attributes.title}
               </h2>
-              <p className="text-[24px] font-bold">{item.attributes.title}</p>
-              <div className="flex items-center gap-[25px] pt-[10px] text-[#97989F]">
-                <div className="flex items-center gap-[10px]">
-                  <div>
-                    <img
-                      className="h-[50px] w-[50px]"
-                      src={`http://localhost:1337${item.attributes.avatar.data.attributes.url}`}
-                      alt=""
-                    />
-                  </div>
-                  <p>{item.attributes.author}</p>
-                </div>
-                <div>
-                  <p>{item.attributes.date}</p>
-                </div>
+              <div className="flex items-center text-gray-600 text-sm">
+                <img
+                  src={`http://localhost:1337${item.attributes.avatar.data.attributes.url}`}
+                  alt=""
+                  className="w-8 h-8 rounded-full mr-2"
+                />
+                <p>{item.attributes.author}</p>
+                <span className="mx-2">-</span>
+                <p>{item.attributes.date}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-center pt-[40px]">
+      <div className="flex justify-center mt-8">
         <button
           onClick={handleLimit}
-          className="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 me-2 mb-2"
+          className="py-2 px-4 bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
         >
-          View All Post
+          Load More
         </button>
       </div>
     </div>

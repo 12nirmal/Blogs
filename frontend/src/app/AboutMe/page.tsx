@@ -24,7 +24,7 @@ const AboutMe = () => {
     <div
       className="bg-cover bg-center bg-no-repeat bg-fixed"
       style={{
-        backgroundImage: `url('https://source.unsplash.com/1L71sPT5XKc')`,
+        backgroundImage: `url('https://wallpaperaccess.com/full/1388555.jpg')`,
       }}
     >
       <div className="bg-white bg-opacity-75">

@@ -1,63 +1,44 @@
-"use client";
+// "use client";
+// import axios from "axios";
+// import React, { useEffect, useState } from "react";
 
-import React, { useEffect, useState } from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import axios from "axios";
+// const PhotosGallery = () => {
+//   const [data, setData] = useState([]);
 
-const Homes = () => {
-  const [data, setData] = useState<any>(null);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await axios.get(
+//           `http://localhost:1337/api/photos-galleries?populate=*`
+//         );
+//         setData(response.data.data);
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//       }
+//     };
+//     fetchData();
+//   }, []);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-        },
-      },
-    ],
-  };
+//   return (
+//     <>
+//       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4 max-w-[400px] md:max-w-[800px] mx-auto">
+//         {data.map((item: any, index) => (
+//           <div key={index} className="w-full md:w-auto ">
+//             {/* Check if images array is present and has at least one item */}
+//             {item.attributes.images &&
+//               item.attributes.images.data.length > 0 && (
+//                 <img
+//                   src={`http://localhost:1337${item.attributes.images.data[0].attributes.url}`} // Accessing the first image URL
+//                   alt=""
+//                   className="object-cover group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-80"
+//                   style={{ width: "214px", height: "286px" }}
+//                 />
+//               )}
+//           </div>
+//         ))}
+//       </div>
+//     </>
+//   );
+// };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:1337/api/banners?populate=*"
-        );
-        setData(response.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  return (
-    <div className="header">
-      <div className="container mx-auto max-w-[1180px]">
-        <Slider {...settings}>
-          {data?.map((item: any, index: number) => (
-            <div key={index}>
-              <img
-                className="w-full h-auto bg-center rounded-lg mt-8 max-h-[585px] md:max-h-[560px]"
-                src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
-                alt=""
-              />
-            </div>
-          ))}
-        </Slider>
-      </div>
-    </div>
-  );
-};
-
-export default Homes;
+// export default PhotosGallery;
