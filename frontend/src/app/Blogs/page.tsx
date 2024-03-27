@@ -17,7 +17,7 @@ const Blogs = () => {
   }, [limit]);
 
   const handleLimit = () => {
-    setLimit(limit + 3);
+    setLimit(limit + 100);
   };
 
   return (
