@@ -18,20 +18,22 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const ProductDetails = () => {
-  const router = useRouter();
-  const { slug } = router.query;
+const ProductDetails = ({ params }: { params: { slug: string } }) => {
+  // const router = useRouter();
+  const { slug } = params;
   const [blogData, setBlogData] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(slug);
       try {
         const response = await axios.get(
-          `http://localhost:1337/api/blogs?slug=${slug}&populate=*`
+          `http://localhost:1337/api/blogs?filters[slug][$eq]=${slug}&populate=*`
         );
         if (response.data.data.length > 0) {
           // Assuming slug is unique and returns only one post
           setBlogData(response.data.data[0]);
+          console.log(response);
         } else {
           setBlogData(null); // Reset blogData if no post found for the slug
         }
