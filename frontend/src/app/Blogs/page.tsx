@@ -35,20 +35,20 @@ const Blogs = () => {
                 alt=""
                 className="w-full h-48 object-cover"
               />
-              <div className="p-4">
-                <span className="inline-block bg-red-600 text-white text-xs font-semibold rounded-full px-2 py-1 mb-2">
+              <div className="p-4 ">
+                <span className="inline-block bg-violet-950 text-white text-xs font-semibold rounded px-2 py-1 mb-2">
                   {item.attributes.category}
                 </span>
                 <h2 className="text-lg font-semibold mb-2">
-                  {item.attributes.title}
+                  {/* {item.attributes.title} */}
                 </h2>
-                <div className="flex items-center text-gray-600 text-sm">
+                <div className="flex items-center text-sm">
                   <img
                     src={`http://localhost:1337${item.attributes.avatar.data.attributes.url}`}
                     alt=""
                     className="w-8 h-8 rounded-full mr-2"
                   />
-                  <p>{item.attributes.author}</p>
+                  <p className="font-bold">{item.attributes.author}</p>
                 </div>
               </div>
             </div>

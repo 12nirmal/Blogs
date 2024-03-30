@@ -1,31 +1,14 @@
 "use client";
-// import React from "react";
-
-// const ProductDetals = ({ params }: { params: { slug: string } }) => {
-//   return (
-//     <>
-//       <div>this is product</div>
-//       <div>{params.slug}</div>
-//     </>
-//   );
-// };
-
-// export default ProductDetals;
-
-// ProductDetails.tsx
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
 
 const ProductDetails = ({ params }: { params: { slug: string } }) => {
-  // const router = useRouter();
   const { slug } = params;
   const [blogData, setBlogData] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(slug);
       try {
         const response = await axios.get(
           `http://localhost:1337/api/blogs?filters[slug][$eq]=${slug}&populate=*`
@@ -33,7 +16,6 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
         if (response.data.data.length > 0) {
           // Assuming slug is unique and returns only one post
           setBlogData(response.data.data[0]);
-          console.log(response);
         } else {
           setBlogData(null); // Reset blogData if no post found for the slug
         }
@@ -45,35 +27,49 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
     fetchData();
   }, [slug]);
 
+  // Function to clean up HTML code
+  const cleanHtml = (htmlString: any) => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = htmlString;
+    return tempDiv.textContent || tempDiv.innerText || "";
+  };
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
       {blogData ? (
         <>
-          <h1 className="text-3xl font-bold mb-8 text-center">
-            {blogData.attributes.title}
-          </h1>
-          <div className="border rounded shadow overflow-hidden">
-            <img
-              src={`http://localhost:1337${blogData.attributes.image.data.attributes.url}`}
-              alt=""
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <span className="inline-block bg-red-600 text-white text-xs font-semibold rounded-full px-2 py-1 mb-2">
-                {blogData.attributes.category}
-              </span>
-              <div className="text-lg font-semibold mb-2">
-                {blogData.attributes.title}
+          <div className="border border-gray-300 rounded-lg overflow-hidden p-10">
+            <div className="flex flex-wrap items-center">
+              <div className="w-full sm:w-2/3 pr-5">
+                <h1 className="text-3xl font-bold mb-8">
+                  {blogData.attributes.title}
+                </h1>
+                <span className="inline-block bg-violet-950 text-white text-xs font-semibold rounded px-2 py-1 mb-2">
+                  {blogData.attributes.category}
+                </span>
+                <p className="text-lg font-semibold mb-2">
+                  {/* {blogData.attributes.title} */}
+                </p>
+                <p className="text-gray-600 text-sm mb-2 font-bold">
+                  Author: {blogData.attributes.author}
+                </p>
+
+                <p className="text-gray-600 text-sm mb-2 font-bold">
+                  Date: {blogData.attributes.date}
+                </p>
+                <p className="text-gray-600 text-sm mb-2">
+                  <p className=" font-bold"> Description:-</p>
+
+                  {cleanHtml(blogData.attributes.description)}
+                </p>
               </div>
-              <p className="text-gray-600 text-sm mb-2">
-                Author: {blogData.attributes.author}
-              </p>
-              <p className="text-gray-600 text-sm mb-2">
-                Date: {blogData.attributes.date}
-              </p>
-              <p className="text-gray-600 text-sm mb-2">
-                Description: {blogData.attributes.description}
-              </p>
+              <div className="w-full sm:w-1/3">
+                <img
+                  src={`http://localhost:1337${blogData.attributes.image.data.attributes.url}`}
+                  alt=""
+                  className="w-full h-auto object-cover rounded"
+                />
+              </div>
             </div>
           </div>
         </>

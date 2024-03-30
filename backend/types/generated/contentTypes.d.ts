@@ -1054,36 +1054,6 @@ export interface ApiPhotoPhoto extends Schema.CollectionType {
   };
 }
 
-export interface ApiPhotosGalleryPhotosGallery extends Schema.CollectionType {
-  collectionName: 'photos_galleries';
-  info: {
-    singularName: 'photos-gallery';
-    pluralName: 'photos-galleries';
-    displayName: 'PhotosGallery';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    images: Attribute.Media;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::photos-gallery.photos-gallery',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::photos-gallery.photos-gallery',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiPhotosgalleryPhotosgallery extends Schema.CollectionType {
   collectionName: 'photosgalleries';
   info: {
@@ -1141,7 +1111,6 @@ declare module '@strapi/types' {
       'api::home-blog.home-blog': ApiHomeBlogHomeBlog;
       'api::menu.menu': ApiMenuMenu;
       'api::photo.photo': ApiPhotoPhoto;
-      'api::photos-gallery.photos-gallery': ApiPhotosGalleryPhotosGallery;
       'api::photosgallery.photosgallery': ApiPhotosgalleryPhotosgallery;
     }
   }
