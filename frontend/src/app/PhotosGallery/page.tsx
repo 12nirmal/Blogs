@@ -51,7 +51,7 @@ const Photos = () => {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-8 py-6">
           <button
             onClick={handleLimit}
             className="py-2 px-4 bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"

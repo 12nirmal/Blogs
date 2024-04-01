@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./Navbar/page";
-// import Footer from "./Footer/page";
+import Footer from "./Footer/page";
 
 export const metadata: Metadata = {
   title: "NATURE BLOG'S",
@@ -18,7 +18,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );

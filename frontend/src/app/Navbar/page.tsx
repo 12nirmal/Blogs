@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-white shadow-2xl">
+    <header className="border-b border-gray-300 shadow ">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link className="flex-shrink-0" href="/">
@@ -60,7 +60,10 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                  <Link className="text-gray-500 hover:text-gray-700" href="#">
+                  <Link
+                    className="text-gray-500 hover:text-gray-700"
+                    href="/WorkWithMe"
+                  >
                     Work With ME
                   </Link>
                 </li>
@@ -137,7 +140,10 @@ const Navbar = () => {
               </li>
 
               <li>
-                <Link className="text-gray-500 hover:text-gray-700" href="#">
+                <Link
+                  className="text-gray-500 hover:text-gray-700"
+                  href="/WorkWithMe"
+                >
                   Work With ME
                 </Link>
               </li>

@@ -57,9 +57,11 @@ const ProductDetails = ({ params }: { params: { slug: string } }) => {
                 <p className="text-gray-600 text-sm mb-2 font-bold">
                   Date: {blogData.attributes.date}
                 </p>
+                <p className=" font-bold text-gray-600 text-sm mb-2">
+                  {" "}
+                  Description:-
+                </p>
                 <p className="text-gray-600 text-sm mb-2">
-                  <p className=" font-bold"> Description:-</p>
-
                   {cleanHtml(blogData.attributes.description)}
                 </p>
               </div>
