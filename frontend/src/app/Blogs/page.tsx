@@ -8,6 +8,7 @@ import Link from "next/link";
 const Blogs = () => {
   const [data, setData] = useState<any>([]);
   const [limit, setLimit] = useState(4);
+  const [hasMore, setHasMore] = useState(true); // State to track if there are more blogs to load
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,12 +16,16 @@ const Blogs = () => {
         `http://localhost:1337/api/blogs?populate=*&pagination[start]=0&pagination[limit]=${limit}`
       );
       setData(response.data.data);
+      // Check if there are more blogs to load
+      if (response.data.data.length < limit) {
+        setHasMore(false);
+      }
     };
     fetchData();
   }, [limit]);
 
   const handleLimit = () => {
-    setLimit(limit + 4);
+    setLimit(limit + 8);
   };
 
   return (
@@ -31,7 +36,7 @@ const Blogs = () => {
           <Link href={`/Blogs/${item.attributes.slug}`} key={item.id}>
             <div className="border rounded shadow overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105">
               <img
-                src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
+                src={`http://localhost:1337${item.attributes?.image?.data?.attributes?.url}`}
                 alt=""
                 className="w-full h-48 object-cover"
               />
@@ -55,14 +60,16 @@ const Blogs = () => {
           </Link>
         ))}
       </div>
-      <div className="flex justify-center mt-8">
-        <button
-          onClick={handleLimit}
-          className="py-2 px-4 bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
-        >
-          Load More
-        </button>
-      </div>
+      {hasMore && (
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={handleLimit}
+            className="py-2 px-4 bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50"
+          >
+            Load More
+          </button>
+        </div>
+      )}
     </div>
   );
 };
