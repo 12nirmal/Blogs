@@ -74,7 +74,7 @@ const Navbar = () => {
             <div className="hidden md:flex md:gap-4">
               <Link
                 className="rounded-md relative left-14 bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-                href="#"
+                href="/Login"
               >
                 Login
               </Link>
@@ -151,7 +151,7 @@ const Navbar = () => {
               <div className="flex gap-4">
                 <Link
                   className="rounded-md  bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow"
-                  href="#"
+                  href="/Login"
                 >
                   Login
                 </Link>
