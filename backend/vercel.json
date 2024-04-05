@@ -1,5 +1,0 @@
-{
-  "version": 2,
-  "builds": [{ "backend": ".env", "use": "@vercel/node" }],
-  "routes": [{ "backend": "/(.*)", "dest": "/" }]
-}
